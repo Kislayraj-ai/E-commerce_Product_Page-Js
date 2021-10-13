@@ -1,3 +1,7 @@
+// NOTE :-
+// for ex
+// image.src.slice is done to get the actual big image url so that it can be displayed
+
 // select elements function
 let get = (select) => {
   const element = document.querySelector(select);
@@ -10,7 +14,6 @@ const lightBoxModal = get('.lightBox');
 const list = [...document.querySelectorAll('#main-section footer img')];
 const lightBoxImage = get('.lightBox_list');
 const lightBoxImageContainer = get('.lightBox_image-container');
-
 const Btn = document.querySelectorAll('.lightBox_btn');
 const closeLightBox = get('.closeLightBox');
 
@@ -22,10 +25,11 @@ closeLightBox.addEventListener('click', () => {
 ImageContainer.addEventListener('click', (e) => {
   if (e.target.src) {
     lightBoxModal.classList.add('Show');
-    let front = e.target.src.slice(21);
-    let newFront = front.slice(0, 23);
+    let front = e.target.src.slice(52);
+    let newFront = ` ${front.slice(0, 23)}.jpg `;
+
     lightBoxImageContainer.innerHTML = `
-    <img  src=${newFront}.jpg  class="lightBox_Mainimage" alt="imagesSlide" />`;
+    <img  src="${newFront}" class="lightBox_Mainimage" alt="imagesSlide" />`;
   }
 
   lightBoxImage.innerHTML = list
@@ -38,9 +42,11 @@ ImageContainer.addEventListener('click', (e) => {
   const mainImage = document.querySelector('.lightBox_Mainimage');
 
   listImage.forEach((img) => {
-    let imageSrc = `${mainImage.src.slice(0, 44)}-thumbnail.jpg`;
+    const imageSrc = `${mainImage.src.slice(52)}`;
+    const newImageSrc = `${imageSrc.slice(0, 23)}-thumbnail.jpg`;
+
     if (mainImage) {
-      if (img.src === imageSrc) img.classList.add('selected');
+      if (img.src.slice(52) === newImageSrc) img.classList.add('selected');
     }
   });
 
@@ -66,7 +72,7 @@ ImageContainer.addEventListener('click', (e) => {
         nextImage.classList.add('selected');
       }
       const selected = document.querySelector('.selected');
-      let selectedImage = selected.src.slice(21);
+      let selectedImage = selected.src.slice(52);
       let selectedImageSrc = selectedImage.slice(0, 23);
       lightBoxImageContainer.innerHTML = `
       <img  src=${selectedImageSrc}.jpg  class="lightBox_Mainimage" alt="imagesSlide" />`;

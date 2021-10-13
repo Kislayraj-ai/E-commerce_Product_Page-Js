@@ -131,8 +131,8 @@ styling
 
 .product .product-image_container,
 .product_image-slider {
-  width: 380px;
-  height: 350px;
+  width: 350px;
+  height: 360px;
   border-radius: 10px;
   margin-bottom: 0.5rem;
 }
@@ -163,7 +163,7 @@ styling
 }
 .product .product_details h1 {
   font-weight: 800;
-  font-size: 2rem;
+  font-size: 2.8rem;
   text-transform: capitalize;
 }
 
@@ -229,7 +229,7 @@ styling
 #main-section footer {
   padding: 0.2rem 1rem;
   width: 40%;
-  margin-left: 280px;
+  margin-left: 220px;
   gap: 20px;
 }
 #main-section footer span {
