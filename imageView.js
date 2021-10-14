@@ -25,11 +25,8 @@ closeLightBox.addEventListener('click', () => {
 ImageContainer.addEventListener('click', (e) => {
   if (e.target.src) {
     lightBoxModal.classList.add('Show');
-    let front = e.target.src.slice(52);
-    let newFront = ` ${front.slice(0, 23)}.jpg `;
-
     lightBoxImageContainer.innerHTML = `
-    <img  src="${newFront}" class="lightBox_Mainimage" alt="imagesSlide" />`;
+    <img  src="${e.target.src}" class="lightBox_Mainimage" alt="imagesSlide" />`;
   }
 
   lightBoxImage.innerHTML = list
@@ -42,11 +39,8 @@ ImageContainer.addEventListener('click', (e) => {
   const mainImage = document.querySelector('.lightBox_Mainimage');
 
   listImage.forEach((img) => {
-    const imageSrc = `${mainImage.src.slice(52)}`;
-    const newImageSrc = `${imageSrc.slice(0, 23)}-thumbnail.jpg`;
-
     if (mainImage) {
-      if (img.src.slice(52) === newImageSrc) img.classList.add('selected');
+      if (img.src === mainImage.src) img.classList.add('selected');
     }
   });
 
@@ -71,11 +65,10 @@ ImageContainer.addEventListener('click', (e) => {
         });
         nextImage.classList.add('selected');
       }
+
       const selected = document.querySelector('.selected');
-      let selectedImage = selected.src.slice(52);
-      let selectedImageSrc = selectedImage.slice(0, 23);
       lightBoxImageContainer.innerHTML = `
-      <img  src=${selectedImageSrc}.jpg  class="lightBox_Mainimage" alt="imagesSlide" />`;
+      <img  src=${selected.src}  class="lightBox_Mainimage" alt="imagesSlide" />`;
     });
   });
 });

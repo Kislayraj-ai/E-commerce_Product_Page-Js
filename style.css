@@ -78,20 +78,21 @@ styling
 }
 .navbar_list {
   list-style: none;
-  width: 45%;
+  width: 50%;
   height: 100%;
   justify-content: space-around;
   align-items: center;
   margin-left: 20px;
 }
 .navbar_list li {
+  font-size: 0.9rem;
   padding: 1.9rem 0;
-  border-bottom: 4px solid transparent;
+  border-bottom: 3px solid transparent;
   color: var(--dark-greyBlue);
   letter-spacing: var(--letter-spacing);
 }
 .navbar_list li:hover {
-  border-bottom: 4px solid var(--primary-color1);
+  border-bottom: 3px solid var(--primary-color1);
   cursor: pointer;
 }
 
@@ -119,6 +120,17 @@ styling
 }
 .profile .profile_img:hover {
   border: 3px solid var(--primary-color1);
+}
+
+.cart_quantity {
+  position: absolute;
+  top: 0%;
+  left: 20%;
+  background-color: var(--primary-color1);
+  color: var(--light);
+  border-radius: 50%;
+  font-size: 0.7rem;
+  padding: 0.2rem;
 }
 
 /*============== product  ====================*/
@@ -474,6 +486,7 @@ media query for medium screen
     margin-right: 10px;
     cursor: pointer;
   }
+
   .logo {
     width: 70px;
     height: 15px;
@@ -483,9 +496,13 @@ media query for medium screen
     height: 20px;
   }
   .profile .profile_img {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     margin-left: 10px;
+  }
+  .cart_quantity {
+    top: -25%;
+    left: 0%;
   }
   .product {
     gap: 0px;

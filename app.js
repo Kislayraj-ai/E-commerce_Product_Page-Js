@@ -32,13 +32,14 @@ const item = [
   },
 ];
 
-const getLocal = () => {
-  let storage = localStorage.getItem('cart');
-  if (storage) storage = JSON.parse(localStorage.getItem('cart'));
-  else storage = [];
+function storageData() {
+  return localStorage.getItem('cart')
+    ? JSON.parse(localStorage.getItem('cart'))
+    : [];
+}
 
-  return storage;
-};
+const cartQuantity = get('.cart_quantity');
+
 window.addEventListener('DOMContentLoaded', () => {
   displayCartItem();
   const singleItem = item.map((item) => {
@@ -142,9 +143,10 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   // selection from  dynamic values
-  const adddCartButton = document.querySelector('.add_btn');
-  const increaseHandler = document.querySelector('.increase');
-  const decreaseHandler = document.querySelector('.decrease');
+  const adddCartButton = get('.add_btn');
+  const increaseHandler = get('.increase');
+  const decreaseHandler = get('.decrease');
+  const amountValue = get('.products_actions input');
 
   // add to cart functionality
   adddCartButton.addEventListener('click', (e) => {
@@ -160,14 +162,20 @@ window.addEventListener('DOMContentLoaded', () => {
           total: parseInt(item.price),
         });
     });
+
     addToLocal(cartItems);
     displayCartItem();
+    const productData = storageData();
+    productData.map((product) => {
+      if (product.quantity === 1) amountValue.value = 1;
+    });
   });
 
   // increasehandler
   increaseHandler.addEventListener('click', (e) => {
     const totaltoAdd = e.target.previousElementSibling.value;
-    const storage = getLocal();
+    if (totaltoAdd === ' ' || totaltoAdd < 1) return;
+    const storage = storageData();
     let increaseQuantity = [];
     storage.map((product) => {
       increaseQuantity.push({
@@ -195,24 +203,26 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // decreasehandler
   decreaseHandler.addEventListener('click', (e) => {
-    // const totaltoRemove = e.target.nextElementSibling.value;
-    let storage = getLocal();
-    let increaseQuantity = [];
+    let storage = storageData();
+    let decreaseQuantity = [];
+    const totaltoRemove = e.target.nextElementSibling.value;
+    if (totaltoRemove === ' ' || totaltoRemove < 1) return;
+
     if (storage[0].quantity <= 1) {
       storage = [];
       addToLocal([]);
     }
     storage.map((product) => {
-      increaseQuantity.push({
+      decreaseQuantity.push({
         id: product.id,
         name: product.name,
         src: product.src,
-        quantity: product.quantity - 1,
+        quantity: product.quantity - parseInt(totaltoRemove),
         price: product.price,
       });
     });
-    increaseQuantity.map((product) => {
-      increaseQuantity[0] = {
+    decreaseQuantity.map((product) => {
+      decreaseQuantity[0] = {
         id: product.id,
         name: product.name,
         src: product.src,
@@ -220,9 +230,15 @@ window.addEventListener('DOMContentLoaded', () => {
         quantity: product.quantity,
         total: product.price * product.quantity,
       };
-    });
+      if (product.quantity <= 0) {
+        decreaseQuantity = [];
+      }
 
-    addToLocal(increaseQuantity);
+      cartQuantity.textContent = product.quantity;
+    });
+    if (decreaseQuantity.length === 0) cartQuantity.textContent = 0;
+
+    addToLocal(decreaseQuantity);
     displayCartItem();
   });
 });
@@ -236,14 +252,14 @@ const removeItem = () => {
   localStorage.removeItem('cart');
   addToLocal([]);
   displayCartItem();
+  cartQuantity.textContent = 0;
 };
 
 function displayCartItem() {
-  let storage = localStorage.getItem('cart');
-  if (storage) storage = JSON.parse(localStorage.getItem('cart'));
-  else storage = [];
+  let productData = storageData();
 
-  const cartProduct = storage.map((cart) => {
+  const cartProduct = productData.map((cart) => {
+    cartQuantity.textContent = cart.quantity;
     return `
     <img src=${cart.src} alt="image1" />
     <div class="cart_itemDetail">
@@ -258,7 +274,7 @@ function displayCartItem() {
     </div>`;
   });
   cartItem.innerHTML = cartProduct;
-  if (storage.length > 0) {
+  if (productData.length > 0) {
     const removeBtn = document.querySelector('.removeBtn');
     removeBtn.addEventListener('click', removeItem);
   }
