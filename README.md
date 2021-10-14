@@ -58,7 +58,7 @@ The designs were created to the following widths:
 
 #### Mobile View
 
-![mobileView](https://user-images.githubusercontent.com/68383933/137151404-2f0be7ab-b44d-49be-9274-c5cbf296f960.png)
+![mobile](https://user-images.githubusercontent.com/68383933/137264483-c1d3298b-2e71-455e-97e8-41a49fa9bf7f.png)
 
 ### Authors
 
