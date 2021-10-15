@@ -130,7 +130,7 @@ styling
   color: var(--light);
   border-radius: 50%;
   font-size: 0.7rem;
-  padding: 0.2rem;
+  padding: 0.2rem 0.3rem;
 }
 
 /*============== product  ====================*/
@@ -143,7 +143,7 @@ styling
 
 .product .product-image_container,
 .product_image-slider {
-  width: 350px;
+  width: 380px;
   height: 360px;
   border-radius: 10px;
   margin-bottom: 0.5rem;
@@ -173,7 +173,7 @@ styling
   font-weight: bolder;
   font-size: 0.8rem;
 }
-.product .product_details h1 {
+.product .product_details h2 {
   font-weight: 800;
   font-size: 2.8rem;
   text-transform: capitalize;
@@ -192,7 +192,7 @@ styling
   justify-content: space-between;
 }
 
-.product_details .product_price p {
+.product_details .product_price span {
   font-size: 0.7rem;
   color: var(--primary-color1);
   background-color: var(--primary-color2);
@@ -202,6 +202,17 @@ styling
 .product_details .product_oldPrice {
   color: var(--dark-greyBlue);
   font-size: 0.8rem;
+  display: inline-block;
+  position: relative;
+}
+.product_details .product_oldPrice::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--dark-greyBlue);
 }
 
 .product_details .products_actions {
@@ -241,7 +252,7 @@ styling
 #main-section footer {
   padding: 0.2rem 1rem;
   width: 40%;
-  margin-left: 220px;
+  margin-left: 225px;
   gap: 20px;
 }
 #main-section footer span {
@@ -315,7 +326,9 @@ styling
   font-size: 0.7rem;
 }
 .total_amount {
-  font-weight: 900;
+  font-weight: bolder;
+  color: #222;
+  letter-spacing: var(--letter-spacing);
 }
 
 .cart_item button {
@@ -331,6 +344,12 @@ styling
   border: none;
   outline: none;
   cursor: pointer;
+}
+
+.no_item {
+  display: block;
+  color: var(--dark-greyBlue);
+  text-align: center;
 }
 
 /*============== sidebar menu on small screen ====================*/
@@ -513,12 +532,17 @@ media query for medium screen
     margin: auto;
     width: 90%;
   }
-  .product .product_details h1 {
+  .product .product_details h2 {
     font-size: 1.7rem;
   }
   .product_price-Container {
     display: flex;
     width: 100%;
+    justify-content: space-between;
+  }
+  .product_price-Container .product_price {
+    /* display: flex; */
+    width: 30%;
     justify-content: space-between;
   }
   .product_details .products_actions {
@@ -651,8 +675,8 @@ media query for mobile view small screen
     align-items: center;
     justify-content: space-between;
   }
-  .product .product_details h1 {
-    font-size: 1.7rem;
+  .product .product_details h2 {
+    font-size: 1.5rem;
   }
 
   .product_details .product_desc {
@@ -673,8 +697,8 @@ media query for mobile view small screen
     font-size: 0.7rem;
   }
   .product_details .products_actions .add_btn {
-    width: 80%;
-    padding: 0.5rem;
+    width: 95%;
+    padding: 0.8rem;
     font-size: 0.7rem;
   }
 

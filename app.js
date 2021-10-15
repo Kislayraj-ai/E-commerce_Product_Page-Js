@@ -44,7 +44,7 @@ window.addEventListener('DOMContentLoaded', () => {
   displayCartItem();
   const singleItem = item.map((item) => {
     return `
-    <div class="product" data-id=${item.id}>
+    <article class="product" data-id=${item.id} role="article">
    
     <img  src="./images/icon-previous.svg" class="arrowBtn prevButton" alt="prev"/>
  
@@ -62,22 +62,22 @@ window.addEventListener('DOMContentLoaded', () => {
   <div class="product_image-slider"><h1>Hello</h1></div>
   <div class="product_details">
     <p class="name">sneaker company</p>
-    <h1>
+    <h2>
      ${item.name}
-    </h1>
+    </h2>
     <p class="product_desc">
       These low-profile sneakers are your perfect casual wear companion.
       Featuring a durable rubber outer sole, they’ll withstand everything
       the weather can offer.
     </p>
 
-    <span class="product_price-Container">
-      <span class="product_price">
+    <div class="product_price-Container">
+      <div class="product_price">
         $125.00
-        <p>50%</p></span
+        <span>50%</span></div
       >
-      <strike class="product_oldPrice">$250.00</strike>
-    </span>
+      <p class="product_oldPrice">$250.00</p>
+    </div>
     <div class="products_actions">
       <div>
         <img src="images/icon-minus.svg" alt="minus" class="decrease" />
@@ -90,7 +90,7 @@ window.addEventListener('DOMContentLoaded', () => {
     </div>
   </div>
   
-  </div>`;
+  </article>`;
   });
   productDisplay.innerHTML = singleItem;
 
@@ -151,24 +151,34 @@ window.addEventListener('DOMContentLoaded', () => {
   // add to cart functionality
   adddCartButton.addEventListener('click', (e) => {
     const cartItems = [];
-    item.find((item) => {
-      if (item.id === e.target.dataset.id)
-        cartItems.push({
-          id: item.id,
-          name: item.name,
-          src: item.src,
-          price: parseInt(item.price),
-          quantity: 1,
-          total: parseInt(item.price),
-        });
-    });
+    const productData = storageData();
 
+    if (productData.length < 1) {
+      amountValue.value = 1;
+      item.find((item) => {
+        if (item.id === e.target.dataset.id)
+          cartItems.push({
+            id: item.id,
+            name: item.name,
+            src: item.src,
+            price: parseInt(item.price),
+            quantity: 1,
+            total: parseInt(item.price),
+          });
+      });
+    }
+    productData.map((product) => {
+      cartItems.push({
+        id: product.id,
+        name: product.name,
+        src: product.src,
+        price: parseInt(product.price),
+        quantity: product.quantity + 1,
+        total: parseInt(product.price),
+      });
+    });
     addToLocal(cartItems);
     displayCartItem();
-    const productData = storageData();
-    productData.map((product) => {
-      if (product.quantity === 1) amountValue.value = 1;
-    });
   });
 
   // increasehandler
@@ -277,6 +287,9 @@ function displayCartItem() {
   if (productData.length > 0) {
     const removeBtn = document.querySelector('.removeBtn');
     removeBtn.addEventListener('click', removeItem);
+  }
+  if (productData.length < 1) {
+    cartItem.innerHTML = `<h4 class="no_item"> No Items in the Cart &#128533; </h4>`;
   }
 }
 

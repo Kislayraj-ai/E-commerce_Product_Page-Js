@@ -12,7 +12,7 @@
       href="./images/favicon-32x32.png"
     />
 
-    <!--bootstrap-->
+    <!--font awsoome-->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
@@ -26,9 +26,9 @@
     <title>Frontend Mentor | E-commerce product page</title>
   </head>
   <body>
-    <section id="main-section">
+    <section id="main-section" role="main">
       <!-- <main> -->
-      <nav class="navbar">
+      <nav class="navbar" role="navigation">
         <div class="navbar_items">
           <img src="images/icon-menu.svg" class="menu_bar" alt="menu bars" />
           <img src="images/logo.svg" class="logo" alt="logo" />
@@ -65,45 +65,37 @@
 
       <!--end of product container-->
 
-      <footer class="images_list">
+      <footer class="images_list" role="group">
         <span>
-          <!-- <a href="images/image-product-1.jpg"> -->
           <img src="images/image-product-1.jpg" alt="image1" />
-          <!-- </a> -->
         </span>
         <span>
-          <!-- <a href="images/image-product-2.jpg"> -->
           <img src="images/image-product-2.jpg" alt="image2" />
-          <!-- </a> -->
         </span>
 
         <span>
-          <!-- <a href="images/image-product-3.jpg"> -->
           <img src="images/image-product-3.jpg" alt="image3" />
-          <!-- </a> -->
         </span>
 
         <span>
-          <!-- <a href="images/image-product-4.jpg"> -->
           <img src="images/image-product-4.jpg" alt="image4" />
-          <!-- </a> -->
         </span>
       </footer>
 
       <!-- </main> -->
 
-      <!-------------------modals here------------->
-      <!--===cart modal===-->
+      <!--modals here-->
+      <!--cart modal-->
 
-      <div class="cart_modal">
+      <div class="cart_modal" role="listitem">
         <h4>Cart</h4>
         <hr />
         <!--cart items container -->
         <div class="cart_item"></div>
       </div>
 
-      <!--===sidebar===-->
-      <aside class="backdrop">
+      <!--sidebar-->
+      <aside class="backdrop" role="menu">
         <div class="sidebar">
           <p>&times;</p>
           <ul>
@@ -118,7 +110,7 @@
     </section>
 
     <!--view images-->
-    <div class="lightBox">
+    <div class="lightBox" role="listbox">
       <img src="images/icon-close.svg" class="closeLightBox" alt="close" />
       <button class="lightBox_btn prevBtn">
         <img src="images/icon-previous.svg" alt="prev" />
@@ -130,6 +122,7 @@
       <div class="lightBox_list"></div>
     </div>
 
+    <!--javascript-->
     <script type="module" src="app.js"></script>
   </body>
 </html>
