@@ -28,9 +28,11 @@
   <body>
     <section id="main-section" role="main">
       <!-- <main> -->
-      <nav class="navbar" role="navigation">
+      <nav class="navbar">
         <div class="navbar_items">
-          <img src="images/icon-menu.svg" class="menu_bar" alt="menu bars" />
+          <h1>
+            <img src="images/icon-menu.svg" class="menu_bar" alt="menu bars" />
+          </h1>
           <img src="images/logo.svg" class="logo" alt="logo" />
 
           <ul class="navbar_list">
@@ -42,14 +44,14 @@
           </ul>
         </div>
         <div class="profile">
-          <span>
+          <div>
             <img
               src="images/icon-cart.svg"
               class="cart_button"
               alt="cart icon"
             />
             <p class="cart_quantity">0</p>
-          </span>
+          </div>
           <img
             src="images/image-avatar.png"
             class="profile_img"
@@ -87,7 +89,7 @@
       <!--modals here-->
       <!--cart modal-->
 
-      <div class="cart_modal" role="listitem">
+      <div class="cart_modal">
         <h4>Cart</h4>
         <hr />
         <!--cart items container -->
@@ -95,7 +97,7 @@
       </div>
 
       <!--sidebar-->
-      <aside class="backdrop" role="menu">
+      <aside class="backdrop">
         <div class="sidebar">
           <p>&times;</p>
           <ul>
@@ -110,7 +112,7 @@
     </section>
 
     <!--view images-->
-    <div class="lightBox" role="listbox">
+    <div class="lightBox">
       <img src="images/icon-close.svg" class="closeLightBox" alt="close" />
       <button class="lightBox_btn prevBtn">
         <img src="images/icon-previous.svg" alt="prev" />

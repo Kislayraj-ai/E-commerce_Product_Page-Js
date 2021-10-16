@@ -1,4 +1,5 @@
 .netlify/
+_redirects
 *.sketch
 *.fig
 # Avoid accidental XD upload if you convert the design file

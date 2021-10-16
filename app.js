@@ -44,7 +44,7 @@ window.addEventListener('DOMContentLoaded', () => {
   displayCartItem();
   const singleItem = item.map((item) => {
     return `
-    <article class="product" data-id=${item.id} role="article">
+    <article class="product" data-id=${item.id} >
    
     <img  src="./images/icon-previous.svg" class="arrowBtn prevButton" alt="prev"/>
  
